@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НС Банк</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .welcome-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 50px); /* 50px - высота футера */
+            background-color: #F8F8F8;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+        }
+
+        .card a {
+            color: black;
+            font-size: 1.2em;
+            text-decoration: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>НС Банк</h1>
+        </div>
+    </header>
+
+    <div class="welcome-section">
+        <div class="card">
+            <a href="1st.html">О компании</a>
+        </div>
+        <div class="card">
+            <a href="news.html">Новости</a>
+        </div>
+        <div class="card">
+            <a href="calc.html">Курс валют</a>
+        </div>
+        <div class="card">
+            <a href="map.html">Контактные данные</a>
+        </div>
+        <div class="card">
+            <a href="video.html">Видео</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 НС Банк</p>
+    </footer>
+</body>
+</html>

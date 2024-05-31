@@ -5,7 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контактные данные - НС Банк</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
     <style>
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #000;
+            margin-bottom: 6px;
+            transition: transform 0.3s ease-out;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -5px);
+        }
+
+        .menu {
+            position: fixed;
+            top: 20px;
+            left: 50px;
+            z-index: 999;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .menu a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+        }
+
         .contact-info {
             display: flex;
             flex-wrap: wrap;
@@ -52,6 +111,18 @@
         <div class="logo">
             <h1>НС Банк</h1>
         </div>
+        <nav class="menu">
+            <a href="index.html">На главную</a>
+            <a href="1st.html">О компании</a>
+            <a href="news.html">Новости</a>
+            <a href="calc.html">Курс валют</a>
+            <a href="video.html">Видео</a>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
     <div class="main-content">
@@ -84,5 +155,15 @@
     <footer>
         <p>&copy; 2024 НС Банк</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+            menuToggle.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
+
