@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контактные данные - НС Банк</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .contact-info-item {
+            background-color: white;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1 1 300px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            animation-delay: 0.1s;
+        }
+
+        .contact-info-item h3 {
+            color: #00923F;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #E0E0E0;
+            padding-bottom: 5px;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>НС Банк</h1>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="section">
+            <h2>Контактные данные</h2>
+            <div class="contact-info">
+                <div class="contact-info-item">
+                    <h3>Телефон</h3>
+                    <p>8 (800) 555-43-24</p>
+                </div>
+                <div class="contact-info-item">
+                    <h3>Адрес</h3>
+                    <p>109004, Москва, ул. Добровольческая, д.20, стр. 2</p>
+                </div>
+                <div class="contact-info-item">
+                    <h3>Электронная почта</h3>
+                    <p>Web@NSBank.ru</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Наше местоположение</h2>
+            <iframe class="map-frame" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2244.5827646274397!2d37.6769123160877!3d55.740406980551826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414ab1d6f3e0b12d%3A0x6eb51b5d4a1c65c8!2z0KHQsNGA0LrQsNC90LjQutCw0Y8g0YPQsdGA0L7QsiwgMjAsINCa0LjQutCw0YHRgtGA0L7QstCwLCAxMDkwMDQ!5e0!3m2!1sru!2sru!4v1684515483752!5m2!1sru!2sru&markers=color:red%7Clabel:B%7C55.740406980551826,37.6769123160877" 
+                    allowfullscreen="" 
+                    loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 НС Банк</p>
+    </footer>
+</body>
+</html>
