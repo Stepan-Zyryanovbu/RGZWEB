@@ -6,6 +6,19 @@
     <title>НС Банк - курс валют и валютный Калькулятор</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
         .exchange-rate-card {
             background-color: white;
             border: 1px solid #E0E0E0;
@@ -17,8 +30,34 @@
             justify-content: space-between;
             align-items: center;
         }
-    </style> 
-        <script>
+
+        header {
+            background-color: #00923F;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+        }
+
+        footer {
+            background-color: #00923F;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             // Получаем курсы валют с сайта ЦБ РФ
             fetch('https://www.cbr-xml-daily.ru/daily_json.js')
                 .then(response => response.json())
@@ -27,32 +66,33 @@
                     const usdRate = rates.USD.Value / rates.USD.Nominal;
                     const eurRate = rates.EUR.Value / rates.EUR.Nominal;
                     const qarRate = rates.QAR.Value / rates.QAR.Nominal;
-    
+
                     document.getElementById('usd-rate').textContent = usdRate.toFixed(2) + ' RUB';
                     document.getElementById('eur-rate').textContent = eurRate.toFixed(2) + ' RUB';
                     document.getElementById('qar-rate').textContent = qarRate.toFixed(2) + ' RUB';
-    
+
                     const currencyForm = document.getElementById('currency-form');
                     currencyForm.addEventListener('submit', function(event) {
                         event.preventDefault();
                         const amount = document.getElementById('from').value;
                         const fromCurrency = document.getElementById('from-currency').value;
                         const toCurrency = document.getElementById('to-currency').value;
-    
+
                         const ratesMap = {
                             'RUB': 1,
                             'USD': usdRate,
                             'EUR': eurRate,
                             'QAR': qarRate
                         };
-    
+
                         const amountInRub = amount * ratesMap[fromCurrency];
                         const convertedAmount = amountInRub / ratesMap[toCurrency];
                         document.getElementById('to').value = convertedAmount.toFixed(2);
                     });
                 })
                 .catch(error => console.error('Ошибка загрузки курсов валют:', error));
-        </script>
+        });
+    </script>
 </head>
 <body>
     <header>
