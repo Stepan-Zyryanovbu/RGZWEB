@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НС Банк - курс валют и валютный Калькулятор</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .exchange-rate-card {
+            background-color: white;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+        <script>
+            // Получаем курсы валют с сайта ЦБ РФ
+            fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+                .then(response => response.json())
+                .then(data => {
+                    const rates = data.Valute;
+                    const usdRate = rates.USD.Value / rates.USD.Nominal;
+                    const eurRate = rates.EUR.Value / rates.EUR.Nominal;
+                    const qarRate = rates.QAR.Value / rates.QAR.Nominal;
+    
+                    document.getElementById('usd-rate').textContent = usdRate.toFixed(2) + ' RUB';
+                    document.getElementById('eur-rate').textContent = eurRate.toFixed(2) + ' RUB';
+                    document.getElementById('qar-rate').textContent = qarRate.toFixed(2) + ' RUB';
+    
+                    const currencyForm = document.getElementById('currency-form');
+                    currencyForm.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        const amount = document.getElementById('from').value;
+                        const fromCurrency = document.getElementById('from-currency').value;
+                        const toCurrency = document.getElementById('to-currency').value;
+    
+                        const ratesMap = {
+                            'RUB': 1,
+                            'USD': usdRate,
+                            'EUR': eurRate,
+                            'QAR': qarRate
+                        };
+    
+                        const amountInRub = amount * ratesMap[fromCurrency];
+                        const convertedAmount = amountInRub / ratesMap[toCurrency];
+                        document.getElementById('to').value = convertedAmount.toFixed(2);
+                    });
+                })
+                .catch(error => console.error('Ошибка загрузки курсов валют:', error));
+        </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>НС Банк</h1>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="section">
+            <h2>Текущий курс валют</h2>
+            <div class="exchange-rate-card">
+                <span>1 USD</span>
+                <span id="usd-rate"></span>
+            </div>
+            <div class="exchange-rate-card">
+                <span>1 EUR</span>
+                <span id="eur-rate"></span>
+            </div>
+            <div class="exchange-rate-card">
+                <span>1 RUB</span>
+                <span>1</span>
+            </div>
+            <div class="exchange-rate-card">
+                <span>1 QAR</span>
+                <span id="qar-rate"></span>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Калькулятор валют</h2>
+            <form id="currency-form">
+                <label for="from">Из:</label>
+                <input type="number" id="from" min="0" step="0.01">
+                <select id="from-currency">
+                    <option value="RUB" selected>Рубли (RUB)</option>
+                    <option value="USD">Доллары (USD)</option>
+                    <option value="EUR">Евро (EUR)</option>
+                    <option value="QAR">Катарский риал (QAR)</option>
+                </select>
+
+                <label for="to">В:</label>
+                <input type="number" id="to" readonly>
+                <select id="to-currency">
+                    <option value="RUB">Рубли (RUB)</option>
+                    <option value="USD">Доллары (USD)</option>
+                    <option value="EUR">Евро (EUR)</option>
+                    <option value="QAR">Катарский риал (QAR)</option>
+                </select>
+
+                <button type="submit">Рассчитать</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 НС Банк</p>
+    </footer>
+</body>
+</html>
